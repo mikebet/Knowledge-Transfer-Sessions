@@ -201,6 +201,9 @@ cython_debug/
 local.settings.json
 .azure/
 *.pubxml
+*.PublishSettings
+appsettings.*.json
+azuredeploy.parameters.*.json
 
 # Cursor
 #  Cursor is an AI-powered code editor. `.cursorignore` specifies files/directories to

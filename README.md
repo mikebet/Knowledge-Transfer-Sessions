@@ -51,6 +51,16 @@ python manage.py test
 
 No environment variables are required for local development in the current setup.
 
+## Deployment
+
+### Azure Static Web Apps
+
+The GitHub Actions workflow for Static Web Apps is configured to skip Oryx app build (`skip_app_build: true`) to avoid Node build-script detection errors in this Python repository.
+
+Important: this project is a Django server-rendered app. Azure Static Web Apps is intended for static frontends (and optional Azure Functions APIs), so Django runtime behavior is not hosted there.
+
+If you need the full form submission behavior in Azure, deploy this project to Azure App Service instead.
+
 ## Data File
 
 - File: `data/submissions.json`
