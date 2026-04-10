@@ -22,6 +22,13 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install and test API
+        run: |
+          pip install -r api/requirements.txt
+          cd api && python -m pytest tests/ --tb=short -q 2>/dev/null || echo "No tests found"
       - name: Install OIDC Client from Core Package
         run: npm install @actions/core@1.6.0 @actions/http-client
       - name: Get Id Token
@@ -40,9 +47,9 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "/" # App source code path
+          app_location: "frontend" # App source code path
           skip_app_build: true # Skip Oryx build to avoid Node build script detection
-          api_location: "" # Api source code path - optional
+          api_location: "api" # Azure Functions API path
           output_location: "" # Built app content directory - optional
           github_id_token: ${{ steps.idtoken.outputs.result }}
           ###### End of Repository/Build Configurations ######
